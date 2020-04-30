@@ -11,21 +11,21 @@ import UIKit
 
 // MARK: - Protocol
 
-protocol RangeSliderDelegate {
-    func didBeginTracking(in slider: RangeSlider)
-    func didEndTracking(in slider: RangeSlider)
-    func didTrackingValuesChange(_ slider: RangeSlider, lowerValue: CGFloat, upperValue: CGFloat)
+public protocol GNRangeSliderDelegate {
+    func didBeginTracking(in slider: GNRangeSlider)
+    func didEndTracking(in slider: GNRangeSlider)
+    func didTrackingValuesChange(_ slider: GNRangeSlider, lowerValue: CGFloat, upperValue: CGFloat)
 }
 
-extension RangeSliderDelegate {
-    func didBeginTracking(in slider: RangeSlider) {}
-    func didEndTracking(in slider: RangeSlider) {}
-    func didTrackingValuesChange(_ slider: RangeSlider, lowerValue: CGFloat, upperValue: CGFloat) {}
+public extension GNRangeSliderDelegate {
+    func didBeginTracking(in slider: GNRangeSlider) {}
+    func didEndTracking(in slider: GNRangeSlider) {}
+    func didTrackingValuesChange(_ slider: GNRangeSlider, lowerValue: CGFloat, upperValue: CGFloat) {}
 }
 
 
 
-class RangeSlider : UIControl {
+public class GNRangeSlider: UIControl {
     
     public var minimumValue: CGFloat = 0 {
         didSet {
@@ -226,7 +226,7 @@ class RangeSlider : UIControl {
         }
     }
     
-    lazy var numberFormatter: NumberFormatter = {
+    public lazy var numberFormatter: NumberFormatter = {
         let f = NumberFormatter()
         f.numberStyle = .decimal
         f.maximumFractionDigits = 2
@@ -256,11 +256,11 @@ class RangeSlider : UIControl {
     private var previousTouchLocation: CGPoint = .zero /// used when there is a step > 0
     private var previousLabelsOverlap: CGFloat = 0
         
-    public var delegate: RangeSliderDelegate?
+    public var delegate: GNRangeSliderDelegate?
     
     
     
-    init(textPosition: TextPosition = .top, tracking: Tracking = .automatic) {
+    public init(textPosition: TextPosition = .top, tracking: Tracking = .automatic) {
         self.textPosition = textPosition
         self._tracking = tracking
         super.init(frame: .zero)
@@ -276,7 +276,7 @@ class RangeSlider : UIControl {
         setupView()
     }
     
-    override func layoutSubviews() {
+    override public func layoutSubviews() {
         super.layoutSubviews()
         guard controlThumb == .none else { return }
         let maxH = (thumbDiameter * thumbDiameterMultiplier) + textFont.pointSize + 10 /// cosmetic padding
@@ -289,7 +289,7 @@ class RangeSlider : UIControl {
         setupFrames()
     }
         
-    override func beginTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
+    override public func beginTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
         previousTouchLocation = touch.location(in: self)
         
         let locInset: CGFloat = -thumbDiameter
@@ -312,7 +312,7 @@ class RangeSlider : UIControl {
         return true
     }
     
-    override func continueTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
+    override public func continueTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
         guard controlThumb != .none else { return false }
         
         let touchLocation = touch.location(in: self)
@@ -364,7 +364,7 @@ class RangeSlider : UIControl {
         return true
     }
     
-    override func endTracking(_ touch: UITouch?, with event: UIEvent?) {
+    override public func endTracking(_ touch: UITouch?, with event: UIEvent?) {
         let thumb = (controlThumb == .left) ? leftThumb : rightThumb
         animateSize(of: thumb, isTracking: false)
         controlThumb = .none

@@ -12,11 +12,13 @@
 		5E494D51245AB26400FDAF6E /* GNRangeSlider.h in Headers */ = {isa = PBXBuildFile; fileRef = 5E494D43245AB26300FDAF6E /* GNRangeSlider.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5E494D61245AB2FC00FDAF6E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E494D60245AB2FC00FDAF6E /* AppDelegate.swift */; };
 		5E494D63245AB2FC00FDAF6E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E494D62245AB2FC00FDAF6E /* SceneDelegate.swift */; };
-		5E494D65245AB2FC00FDAF6E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E494D64245AB2FC00FDAF6E /* ContentView.swift */; };
 		5E494D67245AB30000FDAF6E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5E494D66245AB30000FDAF6E /* Assets.xcassets */; };
 		5E494D6A245AB30000FDAF6E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5E494D69245AB30000FDAF6E /* Preview Assets.xcassets */; };
 		5E494D6D245AB30000FDAF6E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5E494D6B245AB30000FDAF6E /* LaunchScreen.storyboard */; };
 		5E494D73245AB64400FDAF6E /* GNRangeSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E494D72245AB64400FDAF6E /* GNRangeSlider.swift */; };
+		5E494D75245AB7E900FDAF6E /* DemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E494D74245AB7E900FDAF6E /* DemoViewController.swift */; };
+		5E494D77245AB98100FDAF6E /* GNRangeSlider.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E494D40245AB26300FDAF6E /* GNRangeSlider.framework */; };
+		5E494D78245AB98100FDAF6E /* GNRangeSlider.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5E494D40245AB26300FDAF6E /* GNRangeSlider.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -27,7 +29,28 @@
 			remoteGlobalIDString = 5E494D3F245AB26300FDAF6E;
 			remoteInfo = GNRangeSlider;
 		};
+		5E494D79245AB98100FDAF6E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5E494D37245AB26300FDAF6E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5E494D3F245AB26300FDAF6E;
+			remoteInfo = GNRangeSlider;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		5E494D7B245AB98100FDAF6E /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				5E494D78245AB98100FDAF6E /* GNRangeSlider.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		5E494D40245AB26300FDAF6E /* GNRangeSlider.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = GNRangeSlider.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -39,12 +62,12 @@
 		5E494D5E245AB2FC00FDAF6E /* DemoProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DemoProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E494D60245AB2FC00FDAF6E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5E494D62245AB2FC00FDAF6E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		5E494D64245AB2FC00FDAF6E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		5E494D66245AB30000FDAF6E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5E494D69245AB30000FDAF6E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		5E494D6C245AB30000FDAF6E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5E494D6E245AB30000FDAF6E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5E494D72245AB64400FDAF6E /* GNRangeSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GNRangeSlider.swift; sourceTree = "<group>"; };
+		5E494D74245AB7E900FDAF6E /* DemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +90,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5E494D77245AB98100FDAF6E /* GNRangeSlider.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -80,6 +104,7 @@
 				5E494D4D245AB26400FDAF6E /* GNRangeSliderTests */,
 				5E494D5F245AB2FC00FDAF6E /* DemoProject */,
 				5E494D41245AB26300FDAF6E /* Products */,
+				5E494D76245AB98100FDAF6E /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -117,7 +142,7 @@
 			children = (
 				5E494D60245AB2FC00FDAF6E /* AppDelegate.swift */,
 				5E494D62245AB2FC00FDAF6E /* SceneDelegate.swift */,
-				5E494D64245AB2FC00FDAF6E /* ContentView.swift */,
+				5E494D74245AB7E900FDAF6E /* DemoViewController.swift */,
 				5E494D66245AB30000FDAF6E /* Assets.xcassets */,
 				5E494D6B245AB30000FDAF6E /* LaunchScreen.storyboard */,
 				5E494D6E245AB30000FDAF6E /* Info.plist */,
@@ -132,6 +157,13 @@
 				5E494D69245AB30000FDAF6E /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		5E494D76245AB98100FDAF6E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -191,10 +223,12 @@
 				5E494D5A245AB2FC00FDAF6E /* Sources */,
 				5E494D5B245AB2FC00FDAF6E /* Frameworks */,
 				5E494D5C245AB2FC00FDAF6E /* Resources */,
+				5E494D7B245AB98100FDAF6E /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				5E494D7A245AB98100FDAF6E /* PBXTargetDependency */,
 			);
 			name = DemoProject;
 			productName = DemoProject;
@@ -291,9 +325,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5E494D75245AB7E900FDAF6E /* DemoViewController.swift in Sources */,
 				5E494D61245AB2FC00FDAF6E /* AppDelegate.swift in Sources */,
 				5E494D63245AB2FC00FDAF6E /* SceneDelegate.swift in Sources */,
-				5E494D65245AB2FC00FDAF6E /* ContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -304,6 +338,11 @@
 			isa = PBXTargetDependency;
 			target = 5E494D3F245AB26300FDAF6E /* GNRangeSlider */;
 			targetProxy = 5E494D4B245AB26400FDAF6E /* PBXContainerItemProxy */;
+		};
+		5E494D7A245AB98100FDAF6E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5E494D3F245AB26300FDAF6E /* GNRangeSlider */;
+			targetProxy = 5E494D79245AB98100FDAF6E /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -370,7 +409,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -427,7 +466,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -532,6 +571,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"DemoProject/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = DemoProject/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -551,6 +591,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"DemoProject/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = DemoProject/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
