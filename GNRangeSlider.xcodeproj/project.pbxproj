@@ -16,6 +16,7 @@
 		5E494D67245AB30000FDAF6E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5E494D66245AB30000FDAF6E /* Assets.xcassets */; };
 		5E494D6A245AB30000FDAF6E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5E494D69245AB30000FDAF6E /* Preview Assets.xcassets */; };
 		5E494D6D245AB30000FDAF6E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5E494D6B245AB30000FDAF6E /* LaunchScreen.storyboard */; };
+		5E494D73245AB64400FDAF6E /* GNRangeSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E494D72245AB64400FDAF6E /* GNRangeSlider.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,6 +44,7 @@
 		5E494D69245AB30000FDAF6E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		5E494D6C245AB30000FDAF6E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5E494D6E245AB30000FDAF6E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5E494D72245AB64400FDAF6E /* GNRangeSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GNRangeSlider.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +98,7 @@
 			children = (
 				5E494D43245AB26300FDAF6E /* GNRangeSlider.h */,
 				5E494D44245AB26300FDAF6E /* Info.plist */,
+				5E494D72245AB64400FDAF6E /* GNRangeSlider.swift */,
 			);
 			path = GNRangeSlider;
 			sourceTree = "<group>";
@@ -210,6 +213,7 @@
 				TargetAttributes = {
 					5E494D3F245AB26300FDAF6E = {
 						CreatedOnToolsVersion = 11.3.1;
+						LastSwiftMigration = 1130;
 					};
 					5E494D48245AB26400FDAF6E = {
 						CreatedOnToolsVersion = 11.3.1;
@@ -271,6 +275,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5E494D73245AB64400FDAF6E /* GNRangeSlider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -437,6 +442,7 @@
 		5E494D55245AB26400FDAF6E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -452,6 +458,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = nicolaouG.GNRangeSlider;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -460,6 +467,7 @@
 		5E494D56245AB26400FDAF6E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -483,6 +491,7 @@
 		5E494D58245AB26400FDAF6E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = GNRangeSliderTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -500,6 +509,7 @@
 		5E494D59245AB26400FDAF6E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = GNRangeSliderTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
