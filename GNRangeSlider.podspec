@@ -1,7 +1,7 @@
 Pod::Spec.new do |spec|
 
   spec.name         = "GNRangeSlider"
-  spec.version      = "0.1.1"
+  spec.version      = "0.1.2"
   spec.summary      = "A fully customisable range slider"
   spec.description  = <<-DESC
   This library can be used to show a double thumb slider to provide range input.
