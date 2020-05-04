@@ -242,6 +242,10 @@ public class GNRangeSlider: UIControl {
     private let rightThumb = CALayer()
     private let lowerValueLabel = CATextLayer()
     private let upperValueLabel = CATextLayer()
+    
+    /// threshold x values for the labels when the push each other (so they remain inside the appropriate frame)
+    private var minimumLowerLabelFrameX: CGFloat = 0
+    private var maximumUpperLabelFrameX: CGFloat = 0
 
     private enum ControlThumb { case none, left, right }
     private var controlThumb: ControlThumb = .none
@@ -287,6 +291,9 @@ public class GNRangeSlider: UIControl {
         upperValue *= 1
         
         setupFrames()
+        
+        minimumLowerLabelFrameX = min(0, lowerValueLabel.frame.minX)
+        maximumUpperLabelFrameX = max(frame.maxX, upperValueLabel.frame.maxX)
     }
         
     override public func beginTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
@@ -434,6 +441,9 @@ public class GNRangeSlider: UIControl {
         leftThumb.frame = getLeftThumbFrame()
         rightThumb.frame = getRightThumbFrame()
         trackHighlighted.frame = getTrackHighlightedFrame()
+        
+        lowerValueLabel.frame = getLowerValueLabelFrame()
+        upperValueLabel.frame = getUpperValueLabelFrame()
     }
     
     private func getTrackFrame() -> CGRect {
@@ -483,6 +493,10 @@ public class GNRangeSlider: UIControl {
             lowerValueLabel.alignmentMode = .center
         }
         
+        if minimumLowerLabelFrameX != 0 {
+            rect.origin.x = max(rect.origin.x, minimumLowerLabelFrameX)
+        }
+        
         return rect
     }
     
@@ -507,6 +521,10 @@ public class GNRangeSlider: UIControl {
         } else {
             upperValueLabel.alignmentMode = .center
         }
+        
+        if maximumUpperLabelFrameX != 0 {
+            rect.origin.x = min(rect.minX, maximumUpperLabelFrameX - rect.width)
+        }
 
         return rect
     }
@@ -519,22 +537,58 @@ public class GNRangeSlider: UIControl {
             if previousLabelsOverlap > 0 { /// the two labels intersect
                 lowerValueLabel.frame.size.width += previousLabelsOverlap / 2
                 lowerValueLabel.frame.origin.x -= previousLabelsOverlap / 2
+                lowerValueLabel.frame.origin.x = max(lowerValueLabel.frame.origin.x, minimumLowerLabelFrameX)
                 lowerValueLabel.alignmentMode = .left
-                upperValueLabel.frame = getUpperValueLabelFrame(previousLabelsOverlap / 2)
+                /// recalculate overlap in case lowerValueLabel is at the minimum boundary
+                let newOverlap = lowerValueLabel.frame.maxX - upperValueLabel.frame.minX + 4
+                if previousLabelsOverlap == newOverlap {
+                    upperValueLabel.frame = getUpperValueLabelFrame(previousLabelsOverlap / 2)
+                } else {
+                    let diff = abs(newOverlap / 2 - previousLabelsOverlap / 2)
+                    upperValueLabel.frame = getUpperValueLabelFrame(newOverlap / 2 + diff)
+                }
             } else {
                 lowerValueLabel.alignmentMode = .center
                 upperValueLabel.frame = getUpperValueLabelFrame(0)
             }
             
+//            if previousLabelsOverlap > 0 { /// the two labels intersect
+//                lowerValueLabel.frame.size.width += previousLabelsOverlap / 2
+//                lowerValueLabel.frame.origin.x -= previousLabelsOverlap / 2
+//                lowerValueLabel.alignmentMode = .left
+//                upperValueLabel.frame = getUpperValueLabelFrame(previousLabelsOverlap / 2)
+//            } else {
+//                lowerValueLabel.alignmentMode = .center
+//                upperValueLabel.frame = getUpperValueLabelFrame(0)
+//            }
+            
         case .right:
             if previousLabelsOverlap > 0 { /// the two labels intersect
                 upperValueLabel.frame.size.width += previousLabelsOverlap / 2
                 upperValueLabel.alignmentMode = .right
-                lowerValueLabel.frame = getLowerValueLabelFrame(previousLabelsOverlap / 2)
+                upperValueLabel.frame.origin.x = min(upperValueLabel.frame.minX, maximumUpperLabelFrameX - upperValueLabel.frame.width)
+                /// recalculate overlap in case upperValueLabel is at the maximum boundary
+                let newOverlap = lowerValueLabel.frame.maxX - upperValueLabel.frame.minX + 4
+                if previousLabelsOverlap == newOverlap {
+                    lowerValueLabel.frame = getLowerValueLabelFrame(previousLabelsOverlap / 2)
+                } else {
+                    let diff = abs(newOverlap / 2 - previousLabelsOverlap / 2)
+                    lowerValueLabel.frame = getLowerValueLabelFrame(newOverlap / 2 + diff)
+                }
+
             } else {
                 upperValueLabel.alignmentMode = .center
                 lowerValueLabel.frame = getLowerValueLabelFrame(0)
             }
+
+//            if previousLabelsOverlap > 0 { /// the two labels intersect
+//                upperValueLabel.frame.size.width += previousLabelsOverlap / 2
+//                upperValueLabel.alignmentMode = .right
+//                lowerValueLabel.frame = getLowerValueLabelFrame(previousLabelsOverlap / 2)
+//            } else {
+//                upperValueLabel.alignmentMode = .center
+//                lowerValueLabel.frame = getLowerValueLabelFrame(0)
+//            }
             
         case .none: break
         }
