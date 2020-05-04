@@ -279,7 +279,7 @@ public class GNRangeSlider: UIControl {
     override public func layoutSubviews() {
         super.layoutSubviews()
         guard controlThumb == .none else { return }
-        let maxH = (thumbDiameter * thumbDiameterMultiplier) + textFont.pointSize + 10 /// cosmetic padding
+        let maxH = (thumbDiameter * thumbDiameterMultiplier) + (textFont.pointSize * 2) + 8 /// cosmetic padding
         if frame.height < maxH {
             frame.size.height = maxH
         }
@@ -290,6 +290,7 @@ public class GNRangeSlider: UIControl {
     }
         
     override public func beginTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
+        disableIOS13InteractiveDismissal()
         previousTouchLocation = touch.location(in: self)
         
         let locInset: CGFloat = -thumbDiameter
@@ -326,7 +327,7 @@ public class GNRangeSlider: UIControl {
         previousTouchLocation = touchLocation
         
         // find the new value
-        let thumbDistance = touchLocation.x - track.frame.minX/// - thumbDiameter / 2
+        let thumbDistance = touchLocation.x - track.frame.minX
         let trackWidth = track.frame.width
         let percentage = thumbDistance / trackWidth
         let selectedValue = percentage * (maximumValue - minimumValue) + minimumValue
@@ -368,8 +369,18 @@ public class GNRangeSlider: UIControl {
         let thumb = (controlThumb == .left) ? leftThumb : rightThumb
         animateSize(of: thumb, isTracking: false)
         controlThumb = .none
+        enableIOS13InteractiveDismissal()
         delegate?.didEndTracking(in: self)
     }
+    
+    override public func cancelTracking(with event: UIEvent?) {
+        let thumb = (controlThumb == .left) ? leftThumb : rightThumb
+        animateSize(of: thumb, isTracking: false)
+        controlThumb = .none
+        enableIOS13InteractiveDismissal()
+        delegate?.didEndTracking(in: self)
+    }
+
     
     
     
@@ -404,6 +415,20 @@ public class GNRangeSlider: UIControl {
         }
     }
     
+    private func disableIOS13InteractiveDismissal() {
+        /// in case it is a navigation controller or just a controller
+        guard let vc = getTopViewController() else { return }
+        vc.navigationController?.presentationController?.presentedView?.gestureRecognizers?.forEach({ $0.isEnabled = false })
+        vc.presentationController?.presentedView?.gestureRecognizers?.forEach({ $0.isEnabled = false })
+    }
+    
+    private func enableIOS13InteractiveDismissal() {
+        /// in case it is a navigation controller or just a controller
+        guard let vc = getTopViewController() else { return }
+        vc.navigationController?.presentationController?.presentedView?.gestureRecognizers?.forEach({ $0.isEnabled = true })
+        vc.presentationController?.presentedView?.gestureRecognizers?.forEach({ $0.isEnabled = true })
+    }
+    
     private func setupFrames() {
         track.frame = getTrackFrame()
         leftThumb.frame = getLeftThumbFrame()
@@ -412,8 +437,7 @@ public class GNRangeSlider: UIControl {
     }
     
     private func getTrackFrame() -> CGRect {
-        let leftRightPadding: CGFloat = 4
-        return CGRect(x: thumbDiameter / 2 + leftRightPadding, y: (frame.height / 2) - trackThickness / 2, width: frame.width - thumbDiameter - 2 * leftRightPadding, height: trackThickness)
+        return CGRect(x: thumbDiameter / 2, y: (frame.height / 2) - trackThickness / 2, width: frame.width - thumbDiameter, height: trackThickness)
     }
 
     private func getTrackHighlightedFrame() -> CGRect {
@@ -536,6 +560,29 @@ public class GNRangeSlider: UIControl {
             }
             self.layoutIfNeeded()
         }, completion: { _ in })
+    }
+    
+    
+    func getTopViewController(base: UIViewController? = UIApplication.shared.keyWindow?.rootViewController) -> UIViewController? {
+        if let nav = base as? UINavigationController {
+            return getTopController(base: nav.visibleViewController)
+        } else if let tab = base as? UITabBarController, let selected = tab.selectedViewController {
+            return getTopController(base: selected)
+        } else if let presented = base?.presentedViewController {
+            return getTopController(base: presented)
+        }
+        return base
+    }
+
+    func getTopController(base: UIViewController? = UIApplication.shared.keyWindow?.rootViewController) -> UIViewController? {
+        if let nav = base as? UINavigationController {
+            return nav.visibleViewController
+        } else if let tab = base as? UITabBarController, let selected = tab.selectedViewController {
+            return selected
+        } else if let presented = base?.presentedViewController {
+            return getTopController(base: presented)
+        }
+        return base
     }
 }
 
