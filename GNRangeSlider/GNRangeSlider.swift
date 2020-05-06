@@ -234,6 +234,7 @@ public class GNRangeSlider: UIControl {
         return f
     }()
 
+    public var shouldTextClipToBounds = false
     
     
     private let track = CALayer()
@@ -493,9 +494,9 @@ public class GNRangeSlider: UIControl {
             lowerValueLabel.alignmentMode = .center
         }
         
-//        if minimumLowerLabelFrameX != 0 {
+        if shouldTextClipToBounds {
             rect.origin.x = max(rect.origin.x, minimumLowerLabelFrameX)
-//        }
+        }
         
         return rect
     }
@@ -522,7 +523,9 @@ public class GNRangeSlider: UIControl {
             upperValueLabel.alignmentMode = .center
         }
         
-        rect.origin.x = min(rect.minX, maximumUpperLabelFrameX - rect.width)
+        if shouldTextClipToBounds {
+            rect.origin.x = min(rect.minX, maximumUpperLabelFrameX - rect.width)
+        }
 
         return rect
     }

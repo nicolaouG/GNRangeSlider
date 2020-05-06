@@ -34,6 +34,7 @@ class DemoViewController: UIViewController {
         s.textColor = UIColor.darkGray
         s.numberFormatter.currencySymbol = "€"
         s.numberFormatter.numberStyle = .currency
+        s.shouldTextClipToBounds = true
         s.delegate = self
         return s
     }()
@@ -60,6 +61,7 @@ class DemoViewController: UIViewController {
         s.textColor = UIColor.blue
         s.numberFormatter.maximumFractionDigits = 0
         s.numberFormatter.minimumFractionDigits = 0
+        s.shouldTextClipToBounds = false
         s.delegate = self
         return s
     }()

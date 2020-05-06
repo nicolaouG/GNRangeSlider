@@ -40,6 +40,7 @@ s.textFont = UIFont(name: "Chalkduster", size: 14) ?? s.textFont
 s.textColor = UIColor.darkGray
 s.numberFormatter.currencySymbol = "€"
 s.numberFormatter.numberStyle = .currency
+s.shouldTextClipToBounds = true
 s.delegate = self
 ```
 and expose its delegate functions
